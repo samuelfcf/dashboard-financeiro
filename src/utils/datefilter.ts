@@ -14,11 +14,19 @@ const filterListByMonth = (list: Item[], date: string): Item[] => {
       newList.push(item)
     }
   }
-
   return newList
+}
+
+const formatDate = (date: Date): string => {
+  const year = date.getFullYear();
+  const month = date.getMonth()+1;
+  const day = date.getDate();
+
+  return `${day < 10 ? `0${day}` : day}/${month < 10 ? `0${month}` : month}/${year}`
 }
 
 export {
   getCurrentDate,
-  filterListByMonth
+  filterListByMonth,
+  formatDate
 }
