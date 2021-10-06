@@ -25,6 +25,13 @@ const formatDate = (date: Date): string => {
   return `${day < 10 ? `0${day}` : day}/${month < 10 ? `0${month}` : month}/${year}`
 }
 
+const formatCurrentMonth = (currentMonth: string): string => {
+  const [year, month] = currentMonth.split('-');
+  const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
+
+  return `${months[parseInt(month)-1]} ${year}`
+}
+
 export {
   getCurrentDate,
   filterListByMonth,
