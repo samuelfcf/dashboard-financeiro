@@ -1,4 +1,4 @@
-<h1 align="center">CRUD para gerenciador de anúncios</h1>
+<h1 align="center">Dashboard Financeiro</h1>
 
 <h1>
   <img src="public/dashboard_financ.png"></img>
