@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Reset from "./styles/Reset";
 import * as Styled from './styles/Styles';
 import { Item } from "./types/Item";
-import { Category } from "./types/Category";
 import { items } from "./data/items";
+import { categories } from './data/categories';
 import { filterListByMonth, getCurrentDate } from './utils/datefilter';
 import { TableArea } from './components/TableArea';
 import { InfoArea } from './components/InfoArea';
@@ -13,12 +13,31 @@ const App = () => {
   const [list, setList] = useState(items);
   const [filteredList, setFilteredList] = useState<Item[]>([]);
   const [currentMonth, setCurrentMonth] =  useState(getCurrentDate());
+  const [income, setIncome] = useState(0);
+  const [expense, setExpense] = useState(0);
 
   useEffect(() => {
-    console.log(currentMonth)
     setFilteredList(filterListByMonth(list, currentMonth));
     console.log(filteredList)
   }, [list, currentMonth]);
+
+  useEffect(() => {
+    let incomeCount = 0;
+    let expenseCount = 0;
+    filteredList.forEach((item) => {
+     if (categories[item.category].expense) {
+      expenseCount += item.value;
+     } else {
+       incomeCount += item.value;
+     }
+    })
+    setIncome(incomeCount);
+    setExpense(expenseCount);
+  }, [filteredList])
+
+  const handleMonthChange = (newMonth: string) => {
+    setCurrentMonth(newMonth);
+  }
 
   return (
     <>
@@ -29,7 +48,12 @@ const App = () => {
         </Styled.Header>
 
         <Styled.Body>
-         <InfoArea currentMonth={currentMonth}/>
+         <InfoArea 
+          currentMonth={currentMonth} 
+          onMonthChange={handleMonthChange}
+          income={income} 
+          expense={expense}
+         />
          <TableArea list={filteredList}/>
         </Styled.Body>
       </Styled.Container>

@@ -35,5 +35,6 @@ const formatCurrentMonth = (currentMonth: string): string => {
 export {
   getCurrentDate,
   filterListByMonth,
-  formatDate
+  formatDate,
+  formatCurrentMonth
 }
