@@ -24,13 +24,15 @@ const App = () => {
   useEffect(() => {
     let incomeCount = 0;
     let expenseCount = 0;
+
     filteredList.forEach((item) => {
      if (categories[item.category].expense) {
       expenseCount += item.value;
      } else {
        incomeCount += item.value;
      }
-    })
+    });
+    
     setIncome(incomeCount);
     setExpense(expenseCount);
   }, [filteredList])

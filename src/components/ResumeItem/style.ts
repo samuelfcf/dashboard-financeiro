@@ -11,10 +11,10 @@ const Title = styled.h1`
   margin-bottom: 5px;
 `
 
-const Info = styled.h1`
+const Info = styled.h1<{color: string}>`
   text-align: center;
   font-weight: bold;
-  color: #000;
+  color: ${({color}) => color};
 `
 
 export {

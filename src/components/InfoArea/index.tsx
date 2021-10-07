@@ -11,6 +11,8 @@ type Props = {
 
 const InfoArea = ({currentMonth, onMonthChange, income, expense}: Props) => {
 
+  const balance = income-expense;
+
   const handlePrevMonth = () => {
     const [year, month] = currentMonth.split("-");
     const currentDate = new Date(parseInt(year), parseInt(month) -1, 1);
@@ -37,14 +39,17 @@ const InfoArea = ({currentMonth, onMonthChange, income, expense}: Props) => {
         <ResumeItem
           title="Receitas"
           value={income}
+          color={"#000"}
         />
         <ResumeItem
           title="Despesas"
           value={expense}
+          color={"#000"}
         />
         <ResumeItem
           title="Balanço"
-          value={income - expense}
+          value={balance}
+          color={balance === 0 ? "#000" : balance < 0 ? "red" : "green"}
         />
       </Styled.ResumeArea>
     </Styled.Container>
